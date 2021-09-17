@@ -1,0 +1,10 @@
+---
+
+- name: Updates apt cache
+  apt: update_cache=true
+
+- name: Install openjdk
+  apt:
+    name:
+      - openjdk-8-jdk
+    autoclean: yes

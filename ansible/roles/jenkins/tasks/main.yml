@@ -1,0 +1,31 @@
+- name: Updates apt cache
+  apt: update_cache=true
+
+- name: Ensure group jenkins exists
+  group:
+    name: jenkins
+    state: present
+
+- name: Add the user jenkins
+  user:
+    name: jenkins
+    shell: /bin/bash
+    groups:
+      - jenkins
+    append: yes
+
+- name: Create a directory if it does not exist
+  file:
+    path: /home/jenkins/.ssh
+    state: directory
+    owner: jenkins
+    group: jenkins
+    mode: '0755'
+
+- name: Copy file authorized_keys
+  copy:
+    src: authorized_keys
+    dest: /home/jenkins/.ssh/authorized_keys
+    owner: jenkins
+    group: jenkins
+    mode: '664'
