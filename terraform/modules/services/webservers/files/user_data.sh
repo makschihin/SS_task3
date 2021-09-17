@@ -10,6 +10,6 @@
   && sudo apt-get update -y \
   && sudo apt-get install jenkins -y \
   && sudo service jenkins start \
-  && git clone git@github.com:makschihin/SS_task3.git /opt/petclinic_home \
+  && sudo git clone https://github.com/makschihin/SS_task3.git /opt/petclinic_home \
   && ansible-playbook --connection=local   /opt/petclinic_home/ansible/all_server.yml \
   && sudo echo "hello" >> /home/ubuntu/hello.txt

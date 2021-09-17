@@ -31,10 +31,16 @@ variable "ssh_server_port" {
   default     = 22
 }
 
-variable "instance_name" {
-  description = "The name to use for all the cluster resources"
+variable "instance_name_1" {
+  description = "The name to use for all the resources"
   type        = string
-  default     = "web-test"
+  default     = "jenkins_master"
+}
+
+variable "instance_name_2" {
+  description = "The name to use for all the resources"
+  type        = string
+  default     = "jenkins_agent"
 }
 
 variable "instance_type" {
