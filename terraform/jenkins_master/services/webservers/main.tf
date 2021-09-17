@@ -9,6 +9,7 @@ module "webservers" {
   cluster_name  = "web-jenkins"
   instance_type = "t2.micro"
   key_name      = ""
+  instance_name = "jenkins_master"
   user_data     = file("./files/user_data.sh")
   server_port   = 8080
 }

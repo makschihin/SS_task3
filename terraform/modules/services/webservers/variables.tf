@@ -31,7 +31,7 @@ variable "ssh_server_port" {
   default     = 22
 }
 
-variable "cluster_name" {
+variable "instance_name" {
   description = "The name to use for all the cluster resources"
   type        = string
   default     = "web-test"

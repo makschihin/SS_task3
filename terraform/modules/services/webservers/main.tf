@@ -3,11 +3,6 @@
 #############################################################################
 provider "aws" {
   region = "us-east-2"
-  default_tags {
-   tags = {
-     ita_group = "Dp_206"
-   }
- }
 }
 
 #############################################################################
@@ -40,7 +35,7 @@ resource "aws_instance" "ubuntu_instance" {
   key_name               = aws_key_pair.ec2key.key_name
   user_data              = var.user_data
   tags = {
-    Name      = "${var.cluster_name}"
+    Name      = "${var.instance_name}"
 
   }
 }
@@ -49,7 +44,7 @@ resource "aws_instance" "ubuntu_instance" {
 # Security group server (http listen port)
 #############################################################################
 resource "aws_security_group" "http" {
-  name = "${var.cluster_name}-http-sg"
+  name = "${var.instance_name}-http-sg"
   vpc_id = aws_vpc.jenkins-vpc.id
   ingress {
     from_port   = var.server_port
@@ -70,7 +65,7 @@ resource "aws_security_group" "http" {
 # Security group server (ssh listen port)
 #############################################################################
 resource "aws_security_group" "ssh" {
-  name = "${var.cluster_name}-ssh-sg"
+  name = "${var.instance_name}-ssh-sg"
   vpc_id = aws_vpc.jenkins-vpc.id
   ingress {
     from_port   = var.ssh_server_port
@@ -99,7 +94,6 @@ resource "aws_vpc" "jenkins-vpc" {
     
     tags = {
         Name = "jenkins-vpc"
-        ita_group = "Dp_206"
     }
 }
 
@@ -114,7 +108,6 @@ resource "aws_subnet" "jenkins-public-1" {
 
     tags = {
         Name = "jenkins-public-1"
-        ita_group = "Dp_206"
     }
 }
 
@@ -126,7 +119,6 @@ resource "aws_internet_gateway" "jenkins-igw" {
 
     tags = {
         Name = "jenkins-igw"
-        ita_group = "Dp_206"
     }
 }
 
@@ -145,7 +137,6 @@ resource "aws_route_table" "jenkins-public-crt" {
     
     tags = {
         Name = "jenkins-public-crt"
-        ita_group = "Dp_206"
     }
 }
 
