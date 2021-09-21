@@ -1,0 +1,9 @@
+#!/bin/bash
+  sudo apt update -y \
+  && sudo apt install git maven openjdk-8-jdk -y \
+  && git clone https://github.com/makschihin/petclinic-tests.git \
+  && cd petclinic-tests/ \
+  && echo ${db_endpoint} > /home/ubuntu/db_addr.txt \
+  && sudo sed -i 's/localhost/${db_endpoint}/g' src/main/resources/application-mysql.properties \
+  && mvn spring-boot:run -Dspring-boot.run.profiles=mysql \
+  && sudo echo "hello" >> /home/ubuntu/hello.txt
